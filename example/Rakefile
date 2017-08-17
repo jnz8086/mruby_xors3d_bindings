@@ -1,0 +1,52 @@
+
+#replace with absolute paths, if needed
+
+cc = "g++"
+#cc = "mingw32-g++.exe" #mingw
+#cc = "i686-w64-mingw32-g++.exe" #mingw-w64
+
+inc = ["../"]
+
+mruby_path = "~/mruby"
+  inc              << mruby_path+"/include"
+  lib_mruby_release = mruby_path+"/build/host/lib"
+  lib_mruby_debug   = mruby_path+"/build/host-debug/lib"
+
+#xors3d_path = "/C/Program Files (x86)/Xors3d Engine Trial" #msys
+xors3d_path = "C:\\Program Files (x86)\\Xors3d Engine Trial"
+  inc       << xors3d_path+"/headers/CPP/inc"
+  lib_xors3d = xors3d_path+"/headers/CPP/lib"
+
+#exe_compressor = "~/upx394w/upx.exe" #uncomment to use a compressor
+windres = "windres.exe"
+
+cflags = '-m32 -O2 -Wno-write-strings -Wno-conversion-null'
+cflags_release = '-mwindows'
+cflags_debug = '-DXMRB_DEBUG=1 -g'
+
+libs = ['mruby', 'mruby_core', 'Xors3d', 'pthread']
+
+lflags = '-static -static-libgcc'
+
+src = ["./launcher.cpp"]
+out = "./xmrb"
+
+task :release do
+	  if windres
+		sh "#{windres} res.rc res.o"
+		src << "./res.o"
+	  end
+	sh "#{cc} #{src.join(' ')} -o #{out}.exe -I\"#{inc.join("\" -I\"")}\" -L\"#{lib_xors3d}\" -L\"#{lib_mruby_release}\" #{cflags} #{cflags_release} -l#{libs.join(" -l")} #{lflags}"
+end
+
+task :debug do
+	sh "#{cc} #{src.join(' ')} -o #{out}_debug.exe -I\"#{inc.join("\" -I\"")}\" -L\"#{lib_xors3d}\" -L\"#{lib_mruby_debug}\" #{cflags} #{cflags_debug} -l#{(libs-['mruby_core']).join(" -l")} #{lflags}"
+end
+
+task :compress do
+  return if exe_compressor.nil?
+	sh "#{exe_compressor} ./#{out}.exe"
+	sh "#{exe_compressor} ./#{out}_debug.exe"
+end
+
+task :default => [:release, :debug, :compress]
