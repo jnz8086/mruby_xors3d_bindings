@@ -3,7 +3,7 @@
 #include <mruby.h>
 #include <mruby/compile.h>
 #include <xors3d.h>
-#include <xors_mrb_bind.h>
+#include "xors_mrb_bind.h"
 
 #include <windows.h>
 #include <stdio.h>

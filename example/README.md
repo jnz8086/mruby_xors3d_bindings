@@ -7,9 +7,12 @@ A very basic Xors3d + MRuby launcher thingie.
 ### mingw
 
 Assuming you already have Ruby, MRuby and Xors3d installed.
+
 Open "Rakefile" with a text editor and set the correct paths.
+
 Run "rake" in the command line, and it should compile the launcher.
-The resulting binaries will be around 8 MB, but they can be compressed to just 1.5 MB with [UPX](https://upx.github.io/)
+
+The resulting binaries will be around 8 MB, but they can be compressed to just 1.5 MB with [UPX](https://upx.github.io/).
 
 ### msvc
 

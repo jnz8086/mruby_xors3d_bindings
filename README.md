@@ -1,6 +1,8 @@
 # xors_mrb_bind.h
 
-This is a Xors3d engine binding for [MRuby](https://github.com/mruby/mruby)
+This is a Xors3d engine binding for [MRuby](https://github.com/mruby/mruby).
+
+The example launcher (from the '/example' subfolder) might be useful for game prototyping, so [here you can download a prebuilt .exe](https://github.com/jnz8086/mruby_xors3d_bindings/releases/tag/0.1).
 
 Work in progress. (not really though)
 
@@ -52,4 +54,5 @@ end
 # License
 
 Public domain.
+
 As of Xors3d itself, its legal status is uncertain.
