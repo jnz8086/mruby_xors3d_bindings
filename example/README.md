@@ -21,10 +21,10 @@ The resulting binaries will be around 8 MB, but they can be compressed to just 1
 ## additional functions
 
 ```ruby
-	require 'something.rb' # Includes an external script. The path is not relative to the running script!
-	onFrame([stack = true]){ ... } # Executes a code block as the main game loop until it returns true.
-								   # If stack is true, the loops will stack up, and return to one another.
-								   # Of course it's optional and you can just make an infinite loop.
+  require 'something.rb' # Includes an external script. The path is not relative to the running script!
+  onFrame([stack = true]){ ... } # Executes a code block as the main game loop until it returns true.
+                                 # If stack is true, the loops will stack up, and return to one another.
+                                 # Of course it's optional and you can just make an infinite loop.
 ```
 
 ## config.ini
